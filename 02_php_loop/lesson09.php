@@ -18,6 +18,7 @@ $arr = [
     'r2' => ['c1' => 7, 'c2' => 8, 'c3' => 12],
     'r3' => ['c1' => 25, 'c2' => 9, 'c3' => 130]
 ];
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,6 +36,11 @@ th, td {
 </style>
 </head>
 <body>
+    <table>
+        <th>
+            <td></td>
+        </th>
+    </table>
     <!-- ここにテーブル表示 -->
 </body>
 </html>
