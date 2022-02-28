@@ -7,8 +7,9 @@
 
 for($a = 2; $a >= 0; $a--){
   for($b = 3; $b >= $a + 1; $b--){
-    echo "$b $a";
+    echo $b-$a;
   }
   echo "<br>\n";
 }
+
 
