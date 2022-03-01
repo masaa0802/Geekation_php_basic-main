@@ -18,7 +18,30 @@ $arr = [
     'r2' => ['c1' => 7, 'c2' => 8, 'c3' => 12],
     'r3' => ['c1' => 25, 'c2' => 9, 'c3' => 130]
 ];
+
+// 行ごとの合計
+$tate_total = [
+    'r1' => array_sum($arr['r1']),
+    'r2' => array_sum($arr['r2']),
+    'r3' => array_sum($arr['r3']),
+];
+    
+// 列ごとの合計
+$yoko_total = [
+    'c1' => array_sum(array_column($arr, 'c1')),
+    'c2' => array_sum(array_column($arr, 'c2')),
+    'c3' => array_sum(array_column($arr, 'c3')),
+];
+
+
+// 全ての合計
+$all_total = 0;
+foreach ($yoko_total as $total) {
+    $all_total += $total;
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -36,5 +59,35 @@ th, td {
 </head>
 <body>
     <!-- ここにテーブル表示 -->
+ <table>
+ <?php 
+    echo "<tr><td></td><td>c1</td><td>c2</td><td>c3</td><td>横合計</td></tr>";
+
+// r1~r3の各値を表示
+for ($i = 1; $i <= count($arr); $i++) {
+    $tate_key = "r{$i}";
+    echo "<tr><td>{$tate_key}</td>";
+    for ($j = 1; $j <= count($arr[$tate_key]); $j++) {
+        $yoko_key = "c{$j}";
+        // r1~r3の各値を表示
+        echo "<td>{$arr[$tate_key][$yoko_key]}</td>";
+    }
+    // r1~r3の横合計を表示
+    echo "<td>{$tate_total[$tate_key]}</td></tr>";
+
+}
+
+// c1〜c3の縦合計を表示
+echo "<tr><td>縦合計</td>";
+for ($j = 1; $j <= count($yoko_total); $j++) {
+    $yoko_key = "c{$j}";
+    echo "<td>{$yoko_total[$yoko_key]}</td>";
+}
+
+// 総合計を表示
+echo "<td>{$all_total}</td></tr>";
+
+ ?>
+ </table>
 </body>
 </html>
