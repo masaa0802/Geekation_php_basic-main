@@ -18,12 +18,24 @@
 // 100円玉で購入した場合、
 // 50円足りません。
 
-$yen = 10000;   // 購入金額
+$yen = 200;   // 購入金額
 $product = 150; // 商品金額
 
 function calc($yen, $product) {
-    // この関数内に処理を記述
+    $curr = [10000, 5000, 1000, 500, 100, 50, 10, 5, 1];
+    $change = $yen - $product;
+    if ($change > 0) {
+        $tmp = [];
+        foreach ($curr as $val) {
+            $tmp[$val] = intdiv($change, $val);
+            $change = $change % $val;
+    }
+        return $tmp;
+    }
+    return $change;
 }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -34,6 +46,24 @@ function calc($yen, $product) {
 <body>
     <section>
         <!-- ここに結果表示 -->
+    <?php 
+        $result = calc($yen, $product);
+        $change = $yen - $product;
+        if (is_array($result)) {
+            echo "お釣り:";
+            echo $change . "円<br>";
+        foreach ($result as $key=>$val) {
+            if ($key >= 1000) {
+                echo $key . '円札 x ' . $val . '枚,<br>';
+            }else {
+                echo $key . '円玉 x ' . $val . '枚,<br>';
+            }
+
+        }
+        } else {
+            echo -$result . "円足りません";
+        }
+     ?>
     </section>
 </body>
 </html>
