@@ -9,9 +9,10 @@
 // 勝敗は勝ちです。
 // 3回目の勝利です。
 
+session_start();
 
 if (! isset($_SESSION['result'])) {
-    $_SESSION['result'] = 0;
+    $_SESSION['result'] = 0 ;
 }
 
 class Player
@@ -74,7 +75,7 @@ class Enemy extends Player
     }
 }
 
-class Battle
+class Battle 
 {
     private $first;
     private $second;
@@ -118,14 +119,15 @@ class Battle
     public function countVictories()
     {
         if ($this->judge() === '勝ち') {
-            $_SESSION['result'] = 1;
+            $_SESSION['result'] += 1 ;
         }
-    }
-
-    public function getVitories()
-    {
         return $_SESSION['result'];
     }
+
+    // public function getVitories()
+    // {
+    //     return $_SESSION['result'];
+    // }
 
     public function showResult()
     {
@@ -144,7 +146,7 @@ if (! empty($_POST)) {
     echo '勝敗は'.$battle->showResult().'です。';
     if ($battle->showResult() === '勝ち') {
         echo '<br>';
-        echo $battle->getVitories().'回目の勝利です。';
+        echo $battle->countVictories().'回目の勝利です。';
     }
 }
 
