@@ -5,7 +5,6 @@
 // と表示してください。
 // 判定は関数に記述し、関数を呼び出して結果表示すること
 // ※余りの計算が分からなければ「php 四則演算」で検索
-
 // 表示例）
 // 1
 // 2
@@ -25,10 +24,18 @@
 // .
 // .
 // 以下省略
-
-function nabeatsu($i)
-{
+function nabeatsu($i){
     // この関数内に処理を記述
+    if ($i % 15 == 0 ) {
+        echo 'アホわん';
+    }elseif ($i % 5 ==0) {
+        echo 'わん';
+    }elseif ($i % 3 ==0) {
+        echo 'アホ';
+    }else {
+        echo "$i";
+    }
+    echo '<br>';
 }
 ?>
 <!DOCTYPE html>
@@ -39,7 +46,12 @@ function nabeatsu($i)
 </head>
 <body>
     <section>
-        <!-- ここに結果表示 -->
+        <?php 
+            $endvalue = 100;
+            for ($i = 1; $i <= $endvalue ; $i++) {
+                echo nabeatsu($i);
+            }
+        ?>
     </section>
 </body>
 </html>
